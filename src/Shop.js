@@ -12,15 +12,12 @@ class Shop {
   }
 
   updateQuality () {
-    for (let i = 0; i < this.items.length; i++) {
-      let update = UPDATERS[this.items[i].name]
-      if (update === undefined) {
-        update = UPDATERS.Standard
-      }
-      update(this.items[i])
-    }
-
-    return this.items
+    return this.items.map(item => {
+      let update = UPDATERS[item.name]
+      if (update === undefined) update = UPDATERS.Standard
+      update(item)
+      return item
+    })
   }
 }
 
