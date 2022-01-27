@@ -4,18 +4,14 @@ class Shop {
   }
 
   updateBackstagePass(item) {
-    if ( item.quality < 50 ) {
-      item.quality++
-      if (item.sellIn < 11 && item.quality < 50) { item.quality++ }
-      if (item.sellIn < 6 && item.quality < 50) { item.quality++ }
-    }
+    if (item.quality < 50) { item.quality++ }
+    if (item.sellIn < 11 && item.quality < 50) { item.quality++ }
+    if (item.sellIn < 6 && item.quality < 50) { item.quality++ }
   }
 
   updateAgedBrie(item) {
-    if ( item.quality < 50 ) {
-      item.quality++
-      if ( item.sellIn < 0 ) { item.quality++ }
-    }
+    if (item.quality < 50) { item.quality++ }
+    if ( item.sellIn < 0 && item.quality < 50) { item.quality++ }
   }
 
   updateQuality() {
@@ -33,7 +29,7 @@ class Shop {
 
       if (this.items[i].name === 'Aged Brie') { this.updateAgedBrie(this.items[i]) }
       if (this.items[i].name === 'Backstage passes to a TAFKAL80ETC concert') { this.updateBackstagePass(this.items[i]) }
-      
+
       if (this.items[i].sellIn < 0) {
         if (this.items[i].name != 'Aged Brie') {
           if (this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
