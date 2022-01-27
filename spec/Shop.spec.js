@@ -12,6 +12,7 @@ describe("Gilded Rose", function() {
     const backstage1 = new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20)
     const backstage2 = new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49)
     const backstage3 = new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49)
+    const conjured = new Item("Conjured Mana Cake", 3, 6)
     const items = [
       dexVest,
       agedBrie,
@@ -20,7 +21,8 @@ describe("Gilded Rose", function() {
       sulfuras2,
       backstage1,
       backstage2,
-      backstage3
+      backstage3,
+      conjured
     ]
 
     const gildedRose = new Shop(items);
@@ -46,6 +48,9 @@ describe("Gilded Rose", function() {
     expect(backstage2.quality).toEqual(50)
     expect(backstage3.sellIn).toEqual(4)
     expect(backstage3.quality).toEqual(50)
+
+    expect(conjured.sellIn).toEqual(2)
+    expect(conjured.quality).toEqual(4)
   });
 
   it("Day thirty", function() {
@@ -57,6 +62,7 @@ describe("Gilded Rose", function() {
     const backstage1 = new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20)
     const backstage2 = new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49)
     const backstage3 = new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49)
+    const conjured = new Item("Conjured Mana Cake", 3, 6)
     const items = [
       dexVest,
       agedBrie,
@@ -65,7 +71,8 @@ describe("Gilded Rose", function() {
       sulfuras2,
       backstage1,
       backstage2,
-      backstage3
+      backstage3,
+      conjured
     ]
 
     const gildedRose = new Shop(items);
@@ -94,6 +101,9 @@ describe("Gilded Rose", function() {
     expect(updatedItems[6].quality).toEqual(0)
     expect(updatedItems[7].sellIn).toEqual(-25)
     expect(updatedItems[7].quality).toEqual(0)
+
+    expect(conjured.sellIn).toEqual(-27)
+    expect(conjured.quality).toEqual(0)
   });
 
 });
