@@ -3,6 +3,7 @@ const UPDATERS = {
   'Backstage passes to a TAFKAL80ETC concert': require('./backstagePassUpdater'),
   'Sulfuras, Hand of Ragnaros': require('./sulfurasUpdater'),
   'Conjured Mana Cake': require('./conjuredUpdater'),
+  'Standard': require('./standardUpdater')
 }
 
 class Shop {
@@ -17,17 +18,7 @@ class Shop {
       if (this.items[i].name === 'Sulfuras, Hand of Ragnaros') { UPDATERS['Sulfuras, Hand of Ragnaros'](this.items[i]) }
       if (this.items[i].name === 'Conjured Mana Cake') { UPDATERS['Conjured Mana Cake'](this.items[i]) }
       if (this.items[i].name != 'Sulfuras, Hand of Ragnaros' && this.items[i].name != 'Aged Brie' && this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert' && this.items[i].name != 'Conjured Mana Cake') {
-        if (this.items[i].quality > 0) {
-          this.items[i].quality = this.items[i].quality - 1;
-        }
-
-        this.items[i].sellIn = this.items[i].sellIn - 1;
-
-        if (this.items[i].sellIn < 0) {
-          if (this.items[i].quality > 0) {
-            this.items[i].quality = this.items[i].quality - 1;
-          }
-        }
+        UPDATERS['Standard'](this.items[i])
       }
     }
 
