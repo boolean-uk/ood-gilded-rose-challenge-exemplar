@@ -1,3 +1,7 @@
+const UPDATERS = {
+  'Aged Brie': require('./agedBrieUpdater')
+}
+
 class Shop {
   constructor(items=[]){
     this.items = items;
@@ -11,15 +15,9 @@ class Shop {
     if (item.sellIn < 0) { item.quality = 0 }
   }
 
-  updateAgedBrie(item) {
-    item.sellIn--
-    if (item.quality < 50) { item.quality++ }
-    if ( item.sellIn < 0 && item.quality < 50) { item.quality++ }
-  }
-
   updateQuality() {
     for (var i = 0; i < this.items.length; i++) {
-      if (this.items[i].name === 'Aged Brie') { this.updateAgedBrie(this.items[i]) }
+      if (this.items[i].name === 'Aged Brie') { UPDATERS['Aged Brie'](this.items[i]) }
       if (this.items[i].name === 'Backstage passes to a TAFKAL80ETC concert') { this.updateBackstagePass(this.items[i]) }
       if (this.items[i].name != 'Sulfuras, Hand of Ragnaros' && this.items[i].name != 'Aged Brie' && this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
         if (this.items[i].quality > 0) {
