@@ -2,30 +2,24 @@ const Shop = require('../src/shop.js');
 const Item = require('../src/item.js');
 
 describe("Gilded Rose", function() {
+  let items, gildedRose
+
+  beforeEach(() => {
+    items = [
+      new Item("+5 Dexterity Vest", 10, 20),
+      new Item("Aged Brie", 2, 0),
+      new Item("Elixir of the Mongoose", 5, 7),
+      new Item("Sulfuras, Hand of Ragnaros", 0, 80),
+      new Item("Sulfuras, Hand of Ragnaros", -1, 80),
+      new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
+      new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
+      new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
+      new Item("Conjured Mana Cake", 3, 6)
+    ]
+    gildedRose = new Shop(items);
+  })
 
   it("Day one", function() {
-    const dexVest = new Item("+5 Dexterity Vest", 10, 20)
-    const agedBrie = new Item("Aged Brie", 2, 0)
-    const elixirMongoose = new Item("Elixir of the Mongoose", 5, 7)
-    const sulfuras1 = new Item("Sulfuras, Hand of Ragnaros", 0, 80)
-    const sulfuras2 = new Item("Sulfuras, Hand of Ragnaros", -1, 80)
-    const backstage1 = new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20)
-    const backstage2 = new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49)
-    const backstage3 = new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49)
-    const conjured = new Item("Conjured Mana Cake", 3, 6)
-    const items = [
-      dexVest,
-      agedBrie,
-      elixirMongoose,
-      sulfuras1,
-      sulfuras2,
-      backstage1,
-      backstage2,
-      backstage3,
-      conjured
-    ]
-
-    const gildedRose = new Shop(items);
     const updatedItems = gildedRose.updateQuality();
 
     expect(updatedItems[0].sellIn).toEqual(9)
@@ -54,28 +48,6 @@ describe("Gilded Rose", function() {
   });
 
   it("Day thirty", function() {
-    const dexVest = new Item("+5 Dexterity Vest", 10, 20)
-    const agedBrie = new Item("Aged Brie", 2, 0)
-    const elixirMongoose = new Item("Elixir of the Mongoose", 5, 7)
-    const sulfuras1 = new Item("Sulfuras, Hand of Ragnaros", 0, 80)
-    const sulfuras2 = new Item("Sulfuras, Hand of Ragnaros", -1, 80)
-    const backstage1 = new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20)
-    const backstage2 = new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49)
-    const backstage3 = new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49)
-    const conjured = new Item("Conjured Mana Cake", 3, 6)
-    const items = [
-      dexVest,
-      agedBrie,
-      elixirMongoose,
-      sulfuras1,
-      sulfuras2,
-      backstage1,
-      backstage2,
-      backstage3,
-      conjured
-    ]
-
-    const gildedRose = new Shop(items);
     for (let i = 0; i < 29; i++) {
        gildedRose.updateQuality()
     }
