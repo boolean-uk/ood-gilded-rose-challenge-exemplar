@@ -77,8 +77,8 @@ describe("Gilded Rose", function() {
     expect(dexVest.sellIn).toEqual(-20)
     expect(dexVest.quality).toEqual(0)
 
-    expect(agedBrie.sellIn).toEqual(-28)
-    expect(agedBrie.quality).toEqual(50)
+    expect(updatedItems[1].sellIn).toEqual(-28)
+    expect(updatedItems[1].quality).toEqual(50)
 
     expect(elixirMongoose.sellIn).toEqual(-25)
     expect(elixirMongoose.quality).toEqual(0)
@@ -88,12 +88,12 @@ describe("Gilded Rose", function() {
     expect(sulfuras2.sellIn).toEqual(-1)
     expect(sulfuras2.quality).toEqual(80)
 
-    expect(backstage1.sellIn).toEqual(-15)
-    expect(backstage1.quality).toEqual(0)
-    expect(backstage2.sellIn).toEqual(-20)
-    expect(backstage2.quality).toEqual(0)
-    expect(backstage3.sellIn).toEqual(-25)
-    expect(backstage3.quality).toEqual(0)
+    expect(updatedItems[5].sellIn).toEqual(-15)
+    expect(updatedItems[5].quality).toEqual(0)
+    expect(updatedItems[6].sellIn).toEqual(-20)
+    expect(updatedItems[6].quality).toEqual(0)
+    expect(updatedItems[7].sellIn).toEqual(-25)
+    expect(updatedItems[7].quality).toEqual(0)
   });
 
 });
