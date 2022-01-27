@@ -21,8 +21,15 @@ class Shop {
 
     this.itemsByType = {}
     items.forEach((item) => {
-      this.setItemType(item)
+      this.indexItemByType(item)
     })
+  }
+
+  addItem (item) {
+    if (item !== null) {
+      this.items.push(item)
+      this.indexItemByType(item)
+    }
   }
 
   updateQualityOriginal () {
@@ -79,21 +86,22 @@ class Shop {
   }
 
   updateQuality () {
-    this.updateQualityOfItemTypes(ItemTypes.ItemType_Normal)
-    this.updateQualityOfItemTypes(ItemTypes.ItemType_Sulfuras)
-    this.updateQualityOfItemTypes(ItemTypes.ItemType_BackstagePass)
-    this.updateQualityOfItemTypes(ItemTypes.ItemType_Conjured)
-    this.updateQualityOfItemTypes(ItemTypes.ItemType_AgedBrie)
+    this.updateQualityOfItemsByType(ItemTypes.ItemType_Normal)
+    this.updateQualityOfItemsByType(ItemTypes.ItemType_Sulfuras)
+    this.updateQualityOfItemsByType(ItemTypes.ItemType_BackstagePass)
+    this.updateQualityOfItemsByType(ItemTypes.ItemType_Conjured)
+    this.updateQualityOfItemsByType(ItemTypes.ItemType_AgedBrie)
     return this.items
   }
 
-  updateQualityOfItemTypes (itemType) {
+  updateQualityOfItemsByType (itemType) {
     const itemsOfType = this.itemsByType[itemType]
     if (itemsOfType !== undefined) {
       for (let i = 0; i < itemsOfType.length; i++) {
+        // compute the new quality and sell in date for item
         const newSellInDate = this.computeNewSellInDate(itemType, itemsOfType[i].sellIn)
         const newQuality = this.computeItemQualityChange(itemType, itemsOfType[i].sellIn, itemsOfType[i].quality)
-
+        // update item with new quality and sell in date
         itemsOfType[i].quality = newQuality
         itemsOfType[i].sellIn = newSellInDate
       }
@@ -101,6 +109,7 @@ class Shop {
   }
 
   computeNewSellInDate (itemType, currentSellIn) {
+    // compute the new sell in date
     if (itemType === ItemTypes.ItemType_Sulfuras) {
       return currentSellIn
     } else {
@@ -109,6 +118,7 @@ class Shop {
   }
 
   computeItemQualityChange (itemType, currentSellIn, currentQuality) {
+    // compute the amount by which this item changes in quality
     let newQuality = currentQuality
     const newSellIn = currentSellIn - 1
     const degradeModifier = (newSellIn < 0) ? 2 : 1
@@ -132,40 +142,35 @@ class Shop {
         newQuality += 1
       }
     }
+    // items cannot have negative quality
     if (newQuality < 0) {
       newQuality = 0
     }
+    // items cannot have quality > 50
     if (newQuality > 50) {
       newQuality = 50
     }
+    // Sulfuras items never loose quality
     if (itemType === ItemTypes.ItemType_Sulfuras) {
       newQuality = currentQuality
     }
     return newQuality
   }
 
-  addItem (item) {
-    if (item !== null) {
-      this.items.push(item)
-      this.setItemType(item)
-    }
-  }
-
-  setItemType (item) {
+  indexItemByType (item) {
+    let itemType = ItemTypes.ItemType_Normal
     if (item.name.startsWith('Aged Brie')) {
-      this.indexItemByType(item, ItemTypes.ItemType_AgedBrie)
+      itemType = ItemTypes.ItemType_AgedBrie
     } else if (item.name.startsWith('Sulfuras')) {
-      this.indexItemByType(item, ItemTypes.ItemType_Sulfuras)
+      itemType = ItemTypes.ItemType_Sulfuras
     } else if (item.name.startsWith('Backstage passes')) {
-      this.indexItemByType(item, ItemTypes.ItemType_BackstagePass)
+      itemType = ItemTypes.ItemType_BackstagePass
     } else if (item.name.startsWith('Conjured')) {
-      this.indexItemByType(item, ItemTypes.ItemType_Conjured)
+      itemType = ItemTypes.ItemType_Conjured
     } else {
-      this.indexItemByType(item, ItemTypes.ItemType_Normal)
+      itemType = ItemTypes.ItemType_Normal
     }
-  }
-
-  indexItemByType (item, itemType) {
+    // index the item
     if (itemType in this.itemsByType) {
       this.itemsByType[itemType].push(item)
     } else {
