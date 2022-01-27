@@ -1,4 +1,7 @@
-const { Shop, Item, ItemTypes } = require('../src/gilded_rose.js')
+const Shop = require('../src/gilded_rose.js')
+const Item = require('../src/Item.js')
+const ItemTypes = require('./../src/ItemTypes')
+
 // item(name, sell in, quality)
 describe('Gilded Rose', function () {
   let gildedRose = null

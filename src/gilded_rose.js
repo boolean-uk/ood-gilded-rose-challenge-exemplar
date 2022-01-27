@@ -1,24 +1,10 @@
-class Item {
-  constructor (name, sellIn, quality) {
-    this.name = name
-    this.sellIn = sellIn
-    this.quality = quality
-  }
-}
-
-const ItemTypes = {
-  ItemType_Normal: 'normal',
-  ItemType_Sulfuras: 'Sulfuras',
-  ItemType_BackstagePass: 'Backstage passes',
-  ItemType_Conjured: 'Conjured',
-  ItemType_AgedBrie: 'Aged Brie'
-}
+const ItemTypes = require('./ItemTypes')
 
 class Shop {
   constructor (items = []) {
     this.items = items
-    // {itemType: [Items]}
 
+    // index items by type -> {itemType: [Items]}
     this.itemsByType = {}
     items.forEach((item) => {
       this.indexItemByType(item)
@@ -125,8 +111,4 @@ class Shop {
     }
   }
 }
-module.exports = {
-  Item,
-  ItemTypes,
-  Shop
-}
+module.exports = Shop
