@@ -19,7 +19,7 @@ class Shop {
     this.items = items
     // {itemType: [Items]}
 
-    this.itemTypes = {}
+    this.itemsByType = {}
     items.forEach((item) => {
       this.setItemType(item)
     })
@@ -88,7 +88,7 @@ class Shop {
   }
 
   updateQualityOfItemTypes (itemType) {
-    const itemsOfType = this.itemTypes[itemType]
+    const itemsOfType = this.itemsByType[itemType]
     if (itemsOfType !== undefined) {
       for (let i = 0; i < itemsOfType.length; i++) {
         const newSellInDate = this.computeNewSellInDate(itemType, itemsOfType[i].sellIn)
@@ -166,10 +166,10 @@ class Shop {
   }
 
   indexItemByType (item, itemType) {
-    if (itemType in this.itemTypes) {
-      this.itemTypes[itemType].push(item)
+    if (itemType in this.itemsByType) {
+      this.itemsByType[itemType].push(item)
     } else {
-      this.itemTypes[itemType] = [item]
+      this.itemsByType[itemType] = [item]
     }
   }
 }

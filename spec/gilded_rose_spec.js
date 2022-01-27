@@ -59,11 +59,11 @@ describe('Gilded Rose', function () {
 
     const shop = new Shop(items)
 
-    expect(shop.itemTypes[ItemTypes.ItemType_Normal]).toEqual(normalItems)
-    expect(shop.itemTypes[ItemTypes.ItemType_Sulfuras]).toEqual(sulfurasItems)
-    expect(shop.itemTypes[ItemTypes.ItemType_BackstagePass]).toEqual(backstageItems)
-    expect(shop.itemTypes[ItemTypes.ItemType_Conjured]).toEqual(conjuredItems)
-    expect(shop.itemTypes[ItemTypes.ItemType_AgedBrie]).toEqual(agedBrieItems)
+    expect(shop.itemsByType[ItemTypes.ItemType_Normal]).toEqual(normalItems)
+    expect(shop.itemsByType[ItemTypes.ItemType_Sulfuras]).toEqual(sulfurasItems)
+    expect(shop.itemsByType[ItemTypes.ItemType_BackstagePass]).toEqual(backstageItems)
+    expect(shop.itemsByType[ItemTypes.ItemType_Conjured]).toEqual(conjuredItems)
+    expect(shop.itemsByType[ItemTypes.ItemType_AgedBrie]).toEqual(agedBrieItems)
   })
 
   it('should degrade quality twice as fast after sellIn date is zero', () => {
@@ -76,7 +76,7 @@ describe('Gilded Rose', function () {
     expect(items[0].name).toEqual('foo')
     expect(items[0].sellIn).toEqual(-1)
     expect(items[0].quality).toEqual(8)
-    expect(gildedRose.itemTypes[ItemTypes.ItemType_Normal].length).toEqual(1)
+    expect(gildedRose.itemsByType[ItemTypes.ItemType_Normal].length).toEqual(1)
   })
 
   it('should never degrade below zero', () => {
@@ -96,7 +96,7 @@ describe('Gilded Rose', function () {
     expect(items[0].sellIn).toEqual(-2)
     expect(items[0].quality).toEqual(0)
 
-    expect(gildedRose.itemTypes[ItemTypes.ItemType_Normal].length).toEqual(1)
+    expect(gildedRose.itemsByType[ItemTypes.ItemType_Normal].length).toEqual(1)
   })
 
   it('should increase Aged Brie quality over time', () => {
