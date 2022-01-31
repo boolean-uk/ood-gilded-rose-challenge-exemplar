@@ -1,5 +1,5 @@
 const update = require('../src/backstagePassUpdater.js');
-const Item = require('../src/item.js');
+const Item = require('../src/Item.js');
 
 describe("BackStage Pass", function() {
   it("quality increase by 2", function() {

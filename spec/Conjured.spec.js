@@ -1,5 +1,5 @@
 const update = require('../src/conjuredUpdater.js');
-const Item = require('../src/item.js');
+const Item = require('../src/Item.js');
 
 describe("Conjured Items", function() {
   it("quality decreases by 2", function() {

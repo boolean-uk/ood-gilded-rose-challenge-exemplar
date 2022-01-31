@@ -1,5 +1,5 @@
 const update = require('../src/sulfurasUpdater.js');
-const Item = require('../src/item.js');
+const Item = require('../src/Item.js');
 
 describe("Sulfuras", function() {
   it("quality and sell in do not decrease", function() {

@@ -1,5 +1,5 @@
 const update = require('../src/standardUpdater.js');
-const Item = require('../src/item.js');
+const Item = require('../src/Item.js');
 
 describe("Standard Items", function() {
 

@@ -1,5 +1,5 @@
 const update = require('../src/agedBrieUpdater.js');
-const Item = require('../src/item.js');
+const Item = require('../src/Item.js');
 
 describe("Aged Brie", function() {
   it("quality increase by 1", function() {
