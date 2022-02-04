@@ -13,9 +13,7 @@ class Shop {
 
   updateQuality () {
     return this.items.map(item => {
-      let update = UPDATERS[item.name]
-      if (update === undefined) update = UPDATERS.Standard
-      update(item)
+      (UPDATERS[item.name] || UPDATERS.Standard)(item)
       return item
     })
   }
