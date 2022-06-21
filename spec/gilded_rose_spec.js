@@ -17,4 +17,16 @@ describe('Gilded Rose', function () {
     expect(items[0].sellIn).toEqual(-1)
     expect(items[0].quality).toEqual(8)
   })
+
+  it('should show the Quality of an item is never negative', function () {
+    // setup
+    const item = new Item('foo', 0, 0)
+    shop.addItem(item)
+    // excute
+    const items = shop.updateQuality()
+    // verify
+    expect(items[0].name).toEqual('foo')
+    expect(items[0].sellIn).toEqual(-1)
+    expect(items[0].quality).toEqual(0)
+  })
 })
