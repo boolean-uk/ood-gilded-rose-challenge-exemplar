@@ -102,4 +102,16 @@ describe('Gilded Rose', function () {
     expect(items[0].sellIn).toEqual(-1)
     expect(items[0].quality).toEqual(0)
   })
+
+  it('should show "Conjured" items degrade in Quality twice as fast as normal items', function () {
+    // setup
+    const item = new Item('Conjured Mana Cake', 3, 6)
+    shop.addItem(item)
+    // excute
+    const items = shop.updateQuality()
+    // verify
+    expect(items[0].name).toEqual('Conjured Mana Cake')
+    expect(items[0].sellIn).toEqual(2)
+    expect(items[0].quality).toEqual(4)
+  })
 })
