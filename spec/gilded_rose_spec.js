@@ -66,4 +66,40 @@ describe('Gilded Rose', function () {
     expect(items[0].sellIn).toEqual(3)
     expect(items[0].quality).toEqual(80)
   })
+
+  it('should show "Backstage passes"Quality increases by 2 when there are 10 days  or less', function () {
+    // setup
+    const item = new Item('Backstage passes to a TAFKAL80ETC concert', 6, 30)
+    shop.addItem(item)
+    // excute
+    const items = shop.updateQuality()
+    // verify
+    expect(items[0].name).toEqual('Backstage passes to a TAFKAL80ETC concert')
+    expect(items[0].sellIn).toEqual(5)
+    expect(items[0].quality).toEqual(32)
+  })
+
+  it('should show "Backstage passes" Quality incereases by 3 when there are 5 days or less', function () {
+    // setup
+    const item = new Item('Backstage passes to a TAFKAL80ETC concert', 4, 30)
+    shop.addItem(item)
+    // excute
+    const items = shop.updateQuality()
+    // verify
+    expect(items[0].name).toEqual('Backstage passes to a TAFKAL80ETC concert')
+    expect(items[0].sellIn).toEqual(3)
+    expect(items[0].quality).toEqual(33)
+  })
+
+  it('should show "Backstage passes" Quality drops to 0 after the concert', function () {
+    // setup
+    const item = new Item('Backstage passes to a TAFKAL80ETC concert', 0, 5)
+    shop.addItem(item)
+    // excute
+    const items = shop.updateQuality()
+    // verify
+    expect(items[0].name).toEqual('Backstage passes to a TAFKAL80ETC concert')
+    expect(items[0].sellIn).toEqual(-1)
+    expect(items[0].quality).toEqual(0)
+  })
 })
