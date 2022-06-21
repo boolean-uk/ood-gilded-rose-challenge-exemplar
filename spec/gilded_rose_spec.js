@@ -53,4 +53,17 @@ describe('Gilded Rose', function () {
     expect(items[0].sellIn).toEqual(2)
     expect(items[0].quality).toEqual(50)
   })
+
+  it('should show "Sulfuras", being a legendary item, never has to be sold or decreases in Quality', function () {
+    // NB Sulfuras quality is always 80 and sellIn never decreases
+    // setup
+    const item = new Item('Sulfuras, Hand of Ragnaros', 3, 80)
+    shop.addItem(item)
+    // excute
+    const items = shop.updateQuality()
+    // verify
+    expect(items[0].name).toEqual('Sulfuras, Hand of Ragnaros')
+    expect(items[0].sellIn).toEqual(3)
+    expect(items[0].quality).toEqual(80)
+  })
 })
