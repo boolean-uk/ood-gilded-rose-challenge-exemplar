@@ -14,15 +14,17 @@ class Shop {
     this.items.map((item) => {
       const nameTypeCheck = item.name.substring(0, item.name.indexOf(' '))
       if (nameTypeCheck !== '') {
-        console.log('typeCheck:', nameTypeCheck)
+        if (nameTypeCheck === 'Aged') {
+          return this.agedItem(item)
+        }
       } else {
-        return this.updateNormalItem(item)
+        return this.normalItem(item)
       }
     })
     return this.items
   }
 
-  updateNormalItem(item) {
+  normalItem(item) {
     if (item.sellIn <= 0) {
       return [
         (item.sellIn = item.sellIn - 1),
@@ -33,6 +35,10 @@ class Shop {
       (item.sellIn = item.sellIn - 1),
       (item.quality = item.quality > 0 ? item.quality - 1 : 0)
     ]
+  }
+
+  agedItem(item) {
+    return [(item.sellIn = item.sellIn - 1), (item.quality = item.quality + 1)]
   }
 }
 module.exports = {
