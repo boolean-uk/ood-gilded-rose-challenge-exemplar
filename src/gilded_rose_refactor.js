@@ -17,6 +17,9 @@ class Shop {
         if (nameTypeCheck === 'Aged') {
           return this.agedItem(item)
         }
+        if (nameTypeCheck === 'Sulfuras,') {
+          return [item.sellIn, (item.quality = 80)]
+        }
       } else {
         return this.normalItem(item)
       }
@@ -38,7 +41,10 @@ class Shop {
   }
 
   agedItem(item) {
-    return [(item.sellIn = item.sellIn - 1), (item.quality = item.quality + 1)]
+    return [
+      (item.sellIn = item.sellIn - 1),
+      (item.quality = item.quality < 50 ? item.quality + 1 : item.quality)
+    ]
   }
 }
 module.exports = {
