@@ -17,8 +17,11 @@ class Shop {
         if (nameTypeCheck === 'Aged') {
           return this.agedItem(item)
         }
-        if (nameTypeCheck === 'Sulfuras,') {
+        if (nameTypeCheck === 'Conjured,') {
           return [item.sellIn, (item.quality = 80)]
+        }
+        if (nameTypeCheck === 'Backstage') {
+          return this.backStageItem(item)
         }
       } else {
         return this.normalItem(item)
@@ -45,6 +48,24 @@ class Shop {
       (item.sellIn = item.sellIn - 1),
       (item.quality = item.quality < 50 ? item.quality + 1 : item.quality)
     ]
+  }
+
+  backStageItem(item) {
+    if (item.sellIn <= 0) {
+      return [(item.sellIn = item.sellIn - 1), (item.quality = 0)]
+    }
+    if (item.sellIn <= 10 && item.sellIn > 5) {
+      return [
+        (item.sellIn = item.sellIn - 1),
+        (item.quality = item.quality + 2)
+      ]
+    }
+    if (item.sellIn <= 5 && item.sellIn > 0) {
+      return [
+        (item.sellIn = item.sellIn - 1),
+        (item.quality = item.quality + 3)
+      ]
+    }
   }
 }
 module.exports = {
