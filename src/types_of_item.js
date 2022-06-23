@@ -1,9 +1,8 @@
 const TypesOfItem = {
-  agedBrie: 'Aged Brie',
-  backstagePass: 'Backstage pass',
+  agedBrie: 'Aged',
+  backstagePass: 'Backstage',
   conjured: 'Conjured',
-  standard: 'standard',
-  sulfuras: 'sulfuras'
+  sulfuras: 'Sulfuras,'
 }
 
 module.exports = TypesOfItem
