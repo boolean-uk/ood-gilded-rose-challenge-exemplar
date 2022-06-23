@@ -1,4 +1,5 @@
-const { Shop, Item } = require('../src/gilded_rose.js')
+const { Shop } = require('../src/gilded_rose.js')
+const Item = require('../src/item_class.js')
 
 describe('Gilded Rose', function () {
   let shop
