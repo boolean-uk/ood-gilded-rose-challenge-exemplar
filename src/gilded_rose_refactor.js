@@ -17,11 +17,17 @@ class Shop {
         if (nameTypeCheck === 'Aged') {
           return this.agedItem(item)
         }
-        if (nameTypeCheck === 'Conjured,') {
+        if (nameTypeCheck === 'Sulfuras,') {
           return [item.sellIn, (item.quality = 80)]
         }
         if (nameTypeCheck === 'Backstage') {
           return this.backStageItem(item)
+        }
+        if (nameTypeCheck === 'Conjured') {
+          return [
+            (item.sellIn = item.sellIn - 1),
+            (item.quality = item.quality - 2)
+          ]
         }
       } else {
         return this.normalItem(item)
