@@ -1,81 +1,170 @@
-const Shop = require('../src/Shop.js');
-const Item = require('../src/Item.js');
+/* eslint-disable no-undef */
+const Shop = require('../src/Shop.js')
+const Item = require('../src/Item.js')
 
-describe("Gilded Rose", function() {
-  let items, gildedRose
+const defaults = require('./defaults')
+
+describe('Gilded Rose', function () {
+  let items, index, key, gildedRose, sellIn, quality, updatedItems
 
   beforeEach(() => {
-    items = [
-      new Item("+5 Dexterity Vest", 10, 20),
-      new Item("Aged Brie", 2, 0),
-      new Item("Elixir of the Mongoose", 5, 7),
-      new Item("Sulfuras, Hand of Ragnaros", 0, 80),
-      new Item("Sulfuras, Hand of Ragnaros", -1, 80),
-      new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
-      new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
-      new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
-      new Item("Conjured Mana Cake", 3, 6)
-    ]
-    gildedRose = new Shop(items);
+    items = Object.keys(defaults).map(name => new Item(name, defaults[name].sellIn, defaults[name].quality))
+    gildedRose = new Shop(items)
   })
 
-  it("Day one", function() {
-    const updatedItems = gildedRose.updateQuality();
+  it('succesfully updates vest day one', function () {
+    updatedItems = gildedRose.updateQuality()
 
-    expect(updatedItems[0].sellIn).toEqual(9)
-    expect(updatedItems[0].quality).toEqual(19)
+    key = '+5 Dexterity Vest'
+    index = defaults[key].index
+    sellIn = updatedItems[index].getSellIn()
+    quality = updatedItems[index].getQuality()
 
-    expect(updatedItems[1].sellIn).toEqual(1)
-    expect(updatedItems[1].quality).toEqual(1)
+    expect(sellIn).toEqual(defaults[key].dayOne.sellIn)
+    expect(quality).toEqual(defaults[key].dayOne.quality)
+  })
 
-    expect(updatedItems[2].sellIn).toEqual(4)
-    expect(updatedItems[2].quality).toEqual(6)
+  it('succesfully updates brie day one', function () {
+    updatedItems = gildedRose.updateQuality()
 
-    expect(updatedItems[3].sellIn).toEqual(0)
-    expect(updatedItems[3].quality).toEqual(80)
-    expect(updatedItems[4].sellIn).toEqual(-1)
-    expect(updatedItems[4].quality).toEqual(80)
+    key = 'Aged Brie'
+    index = defaults[key].index
+    sellIn = updatedItems[index].getSellIn()
+    quality = updatedItems[index].getQuality()
 
-    expect(updatedItems[5].sellIn).toEqual(14)
-    expect(updatedItems[5].quality).toEqual(21)
-    expect(updatedItems[6].sellIn).toEqual(9)
-    expect(updatedItems[6].quality).toEqual(50)
-    expect(updatedItems[7].sellIn).toEqual(4)
-    expect(updatedItems[7].quality).toEqual(50)
+    expect(sellIn).toEqual(defaults[key].dayOne.sellIn)
+    expect(quality).toEqual(defaults[key].dayOne.quality)
+  })
 
-    expect(updatedItems[8].sellIn).toEqual(2)
-    expect(updatedItems[8].quality).toEqual(4)
-  });
+  it('succesfully updates mongoose day one', function () {
+    updatedItems = gildedRose.updateQuality()
 
-  it("Day thirty", function() {
-    for (let i = 0; i < 29; i++) {
-       gildedRose.updateQuality()
+    key = 'Elixir of the Mongoose'
+    index = defaults[key].index
+    sellIn = updatedItems[index].getSellIn()
+    quality = updatedItems[index].getQuality()
+
+    expect(sellIn).toEqual(defaults[key].dayOne.sellIn)
+    expect(quality).toEqual(defaults[key].dayOne.quality)
+  })
+
+  it('succesfully updates sulfuras day one', function () {
+    updatedItems = gildedRose.updateQuality()
+
+    key = 'Sulfuras, Hand of Ragnaros'
+    index = defaults[key].index
+    sellIn = updatedItems[index].getSellIn()
+    quality = updatedItems[index].getQuality()
+
+    expect(sellIn).toEqual(defaults[key].dayOne.sellIn)
+    expect(quality).toEqual(defaults[key].dayOne.quality)
+  })
+
+  it('succesfully updates back stage passes day one', function () {
+    updatedItems = gildedRose.updateQuality()
+
+    key = 'Backstage passes to a TAFKAL80ETC concert'
+    index = defaults[key].index
+    sellIn = updatedItems[index].getSellIn()
+    quality = updatedItems[index].getQuality()
+
+    expect(sellIn).toEqual(defaults[key].dayOne.sellIn)
+    expect(quality).toEqual(defaults[key].dayOne.quality)
+  })
+
+  it('succesfully updates mana day one', function () {
+    updatedItems = gildedRose.updateQuality()
+
+    key = 'Conjured Mana Cake'
+    index = defaults[key].index
+    sellIn = updatedItems[index].getSellIn()
+    quality = updatedItems[index].getQuality()
+
+    expect(sellIn).toEqual(defaults[key].dayOne.sellIn)
+    expect(quality).toEqual(defaults[key].dayOne.quality)
+  })
+
+  it('succesfully updates vest day 30', function () {
+    for (let i = 1; i <= 30; i++) {
+      updatedItems = gildedRose.updateQuality()
     }
-    const updatedItems = gildedRose.updateQuality();
 
-    expect(updatedItems[0].sellIn).toEqual(-20)
-    expect(updatedItems[0].quality).toEqual(0)
+    key = '+5 Dexterity Vest'
+    index = defaults[key].index
+    sellIn = updatedItems[index].getSellIn()
+    quality = updatedItems[index].getQuality()
 
-    expect(updatedItems[1].sellIn).toEqual(-28)
-    expect(updatedItems[1].quality).toEqual(50)
+    expect(sellIn).toEqual(defaults[key].dayThirty.sellIn)
+    expect(quality).toEqual(defaults[key].dayThirty.quality)
+  })
 
-    expect(updatedItems[2].sellIn).toEqual(-25)
-    expect(updatedItems[2].quality).toEqual(0)
+  it('succesfully updates brie day 30', function () {
+    for (let i = 1; i <= 30; i++) {
+      updatedItems = gildedRose.updateQuality()
+    }
 
-    expect(updatedItems[3].sellIn).toEqual(0)
-    expect(updatedItems[3].quality).toEqual(80)
-    expect(updatedItems[4].sellIn).toEqual(-1)
-    expect(updatedItems[4].quality).toEqual(80)
+    key = 'Aged Brie'
+    index = defaults[key].index
+    sellIn = updatedItems[index].getSellIn()
+    quality = updatedItems[index].getQuality()
 
-    expect(updatedItems[5].sellIn).toEqual(-15)
-    expect(updatedItems[5].quality).toEqual(0)
-    expect(updatedItems[6].sellIn).toEqual(-20)
-    expect(updatedItems[6].quality).toEqual(0)
-    expect(updatedItems[7].sellIn).toEqual(-25)
-    expect(updatedItems[7].quality).toEqual(0)
+    expect(sellIn).toEqual(defaults[key].dayThirty.sellIn)
+    expect(quality).toEqual(defaults[key].dayThirty.quality)
+  })
 
-    expect(updatedItems[8].sellIn).toEqual(-27)
-    expect(updatedItems[8].quality).toEqual(0)
-  });
+  it('succesfully updates mongoose day 30', function () {
+    for (let i = 1; i <= 30; i++) {
+      updatedItems = gildedRose.updateQuality()
+    }
 
-});
+    key = 'Elixir of the Mongoose'
+    index = defaults[key].index
+    sellIn = updatedItems[index].getSellIn()
+    quality = updatedItems[index].getQuality()
+
+    expect(sellIn).toEqual(defaults[key].dayThirty.sellIn)
+    expect(quality).toEqual(defaults[key].dayThirty.quality)
+  })
+
+  it('succesfully updates sulfuras day 30', function () {
+    for (let i = 1; i <= 30; i++) {
+      updatedItems = gildedRose.updateQuality()
+    }
+
+    key = 'Sulfuras, Hand of Ragnaros'
+    index = defaults[key].index
+    sellIn = updatedItems[index].getSellIn()
+    quality = updatedItems[index].getQuality()
+
+    expect(sellIn).toEqual(defaults[key].dayThirty.sellIn)
+    expect(quality).toEqual(defaults[key].dayThirty.quality)
+  })
+
+  it('succesfully updates back stage passes day 30', function () {
+    for (let i = 1; i <= 30; i++) {
+      updatedItems = gildedRose.updateQuality()
+    }
+
+    key = 'Backstage passes to a TAFKAL80ETC concert'
+    index = defaults[key].index
+    sellIn = updatedItems[index].getSellIn()
+    quality = updatedItems[index].getQuality()
+
+    expect(sellIn).toEqual(defaults[key].dayThirty.sellIn)
+    expect(quality).toEqual(defaults[key].dayThirty.quality)
+  })
+
+  it('succesfully updates mana day 30', function () {
+    for (let i = 1; i <= 30; i++) {
+      updatedItems = gildedRose.updateQuality()
+    }
+
+    key = 'Conjured Mana Cake'
+    index = defaults[key].index
+    sellIn = updatedItems[index].getSellIn()
+    quality = updatedItems[index].getQuality()
+
+    expect(sellIn).toEqual(defaults[key].dayThirty.sellIn)
+    expect(quality).toEqual(defaults[key].dayThirty.quality)
+  })
+})

@@ -1,0 +1,80 @@
+{
+  "+5 Dexterity Vest": {
+    "index": 0,
+    "sellIn": 10,
+    "quality": 20,
+    "dayOne": {
+      "sellIn": 9,
+      "quality": 19
+    },
+    "dayThirty": {
+      "sellIn": -20,
+      "quality": 0
+    }
+  },
+  "Aged Brie": {
+    "index": 1,
+    "sellIn": 2,
+    "quality": 0,
+    "dayOne": {
+      "sellIn": 1,
+      "quality": 1
+    },
+    "dayThirty": {
+      "sellIn": -28,
+      "quality": 50
+    }
+  },
+  "Elixir of the Mongoose": {
+    "index": 2,
+    "sellIn": 5,
+    "quality": 7,
+    "dayOne": {
+      "sellIn": 4,
+      "quality": 6
+    },
+    "dayThirty": {
+      "sellIn": -25,
+      "quality": 0
+    }
+  },
+  "Sulfuras, Hand of Ragnaros": {
+    "index": 3,
+    "sellIn": 0,
+    "quality": 80,
+    "dayOne": {
+      "sellIn": -1,
+      "quality": 80
+    },
+    "dayThirty": {
+      "sellIn": -30,
+      "quality": 80
+    }
+  },
+  "Backstage passes to a TAFKAL80ETC concert": {
+    "index": 4,
+    "sellIn": 15,
+    "quality": 20,
+    "dayOne": {
+      "sellIn": 14,
+      "quality": 21
+    },
+    "dayThirty": {
+      "sellIn": -15,
+      "quality": 0
+    }
+  },
+  "Conjured Mana Cake": {
+    "index": 5,
+    "sellIn": 3,
+    "quality": 6,
+    "dayOne": {
+      "sellIn": 2,
+      "quality": 4
+    },
+    "dayThirty": {
+      "sellIn": -27,
+      "quality": 0
+    }
+  }
+}
